@@ -29,5 +29,6 @@ from .metrics import (
     confusion_matrix,
     roc_auc,
 )
+from .tree import DecisionTreeClassifier
 
 __version__ = "0.1.0"
