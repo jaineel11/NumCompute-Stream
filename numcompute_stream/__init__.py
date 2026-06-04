@@ -30,5 +30,6 @@ from .metrics import (
     roc_auc,
 )
 from .tree import DecisionTreeClassifier
+from .ensemble import EnsembleClassifier
 
 __version__ = "0.1.0"
