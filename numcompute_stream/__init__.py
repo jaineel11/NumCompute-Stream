@@ -32,5 +32,6 @@ from .metrics import (
 from .tree import DecisionTreeClassifier
 from .ensemble import EnsembleClassifier
 from .pipeline import Pipeline
+from .stream import StreamTrainer
 
 __version__ = "0.1.0"
