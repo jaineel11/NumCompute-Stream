@@ -33,5 +33,33 @@ from .tree import DecisionTreeClassifier
 from .ensemble import EnsembleClassifier
 from .pipeline import Pipeline
 from .stream import StreamTrainer
+from . import visualise
 
 __version__ = "0.1.0"
+
+__all__ = [
+    # io
+    "read_csv", "write_csv", "stream_csv",
+    "split_into_chunks", "train_test_split",
+    "make_classification_dataset",
+    # preprocessing
+    "StandardScaler", "MinMaxScaler",
+    "Imputer", "OneHotEncoder",
+    # stats
+    "StreamingStats", "StreamingHistogram",
+    "ExponentialMovingAverage",
+    "update_stats", "reset_stats",
+    # metrics
+    "Accuracy", "PrecisionRecallF1",
+    "ConfusionMatrix", "AUC",
+    "accuracy", "precision_recall_f1",
+    "confusion_matrix", "roc_auc",
+    # models
+    "DecisionTreeClassifier",
+    "EnsembleClassifier",
+    # pipeline + trainer
+    "Pipeline",
+    "StreamTrainer",
+    # visualise
+    "visualise",
+]
