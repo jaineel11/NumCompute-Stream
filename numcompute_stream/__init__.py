@@ -31,5 +31,6 @@ from .metrics import (
 )
 from .tree import DecisionTreeClassifier
 from .ensemble import EnsembleClassifier
+from .pipeline import Pipeline
 
 __version__ = "0.1.0"
