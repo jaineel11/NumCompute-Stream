@@ -312,17 +312,20 @@ class Imputer:
 
         if self.strategy == "mean":
             if self._mean is None:
-                self._mean = np.zeros(n_features)
-                self._M2   = np.zeros(n_features)
+                self._mean        = np.zeros(n_features)
+                self._M2          = np.zeros(n_features)
+                self._col_counts  = np.zeros(n_features)
 
             for row in X:
                 nan_mask = np.isnan(row)
-                safe_row = np.where(nan_mask, self._mean, row)
-                self.n_samples_seen_ += 1
-                delta = safe_row - self._mean
-                self._mean += delta / self.n_samples_seen_
-                self._M2   += delta * (safe_row - self._mean)
+                for j in range(n_features):
+                    if nan_mask[j]:
+                        continue
+                    self._col_counts[j] += 1
+                    delta = row[j] - self._mean[j]
+                    self._mean[j] += delta / self._col_counts[j]
 
+            self.n_samples_seen_ += len(X)
             self.statistics_ = self._mean.copy()
 
         elif self.strategy == "median":
@@ -472,7 +475,9 @@ class OneHotEncoder:
             # searchsorted gives index into cats for each value
             idx = np.searchsorted(cats, col)
             # bounds check — catch unknown categories
-            valid = (idx < len(cats)) & (cats[idx] == col)
+            # must check idx < len(cats) first before indexing into cats
+            in_bounds = idx < len(cats)
+            valid = in_bounds & (cats[np.minimum(idx, len(cats) - 1)] == col)
             if not np.all(valid):
                 bad = np.unique(col[~valid])
                 raise ValueError(

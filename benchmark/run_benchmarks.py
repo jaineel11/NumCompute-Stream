@@ -251,7 +251,6 @@ def bench_criterion():
 if __name__ == "__main__":
     print()
     print("numcompute_stream — Performance Benchmarks")
-    print("Only NumPy used. No scikit-learn or pandas.")
     print()
 
     bench_models()
