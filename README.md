@@ -56,20 +56,23 @@ pip install numpy matplotlib pytest
 pytest tests/ -v
 ```
 
-70 unit tests across 18 test classes covering all modules. Includes streaming
+91 unit tests across 18 test classes covering all modules. Includes streaming
 specific edge cases like NaN inputs, zero variance columns, single class datasets,
 consistency between fit and sequential partial_fit calls, and the result() alias
 on every metric class.
 
 ## Demo
 
+Open and run `demo/stream_demo.ipynb` in Jupyter:
+
 ```bash
-python demo/demo.py
+jupyter notebook demo/stream_demo.ipynb
 ```
 
-Loads a CSV dataset, streams through 10 chunks, trains three pipelines
-(DecisionTree, RandomForest, AdaBoost), logs metrics via StreamTrainer and saves
-visualisation plots to demo/outputs/.
+Loads a CSV dataset, streams through 12 chunks, trains three pipelines
+(DecisionTree, RandomForest, AdaBoost) incrementally via `StreamTrainer.fit_chunk()`,
+logs metrics after every chunk, and displays visualisation plots inline.
+Saved plots are written to `demo/outputs/`.
 
 ## Benchmarks
 
