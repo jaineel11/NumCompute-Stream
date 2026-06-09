@@ -58,9 +58,7 @@ _LINE_WIDTH  = 2.0
 _MARKER_SIZE = 5
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 1. plot_metric_over_time  (spec required)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_metric_over_time(
     metric_values,
@@ -129,9 +127,7 @@ def plot_metric_over_time(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 2. compare_models  (spec required)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def compare_models(
     metric1,
@@ -206,9 +202,7 @@ def compare_models(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 3. plot_predictions_vs_ground_truth  (spec required)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_predictions_vs_ground_truth(
     y_true,
@@ -309,9 +303,7 @@ def plot_predictions_vs_ground_truth(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 4. plot_confusion_matrix
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_confusion_matrix(
     matrix,
@@ -374,9 +366,7 @@ def plot_confusion_matrix(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 5. plot_learning_curve
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_learning_curve(
     n_samples_list,
@@ -428,9 +418,7 @@ def plot_learning_curve(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 6. plot_histogram
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_histogram(
     counts,
@@ -475,9 +463,7 @@ def plot_histogram(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # 7. plot_decision_boundary
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_decision_boundary(
     model,
@@ -551,9 +537,7 @@ def plot_decision_boundary(
     return fig
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Internal helpers
-# ─────────────────────────────────────────────────────────────────────────────
 
 def _style_ax(ax, title, xlabel, ylabel):
     """Apply consistent axis styling."""

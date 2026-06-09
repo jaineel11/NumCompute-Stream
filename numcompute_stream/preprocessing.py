@@ -18,9 +18,7 @@ OneHotEncoder     – encode categoricals, expands columns incrementally
 import numpy as np
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # StandardScaler
-# ─────────────────────────────────────────────────────────────────────────────
 
 class StandardScaler:
     """
@@ -146,9 +144,7 @@ class StandardScaler:
         return X
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # MinMaxScaler
-# ─────────────────────────────────────────────────────────────────────────────
 
 class MinMaxScaler:
     """
@@ -179,6 +175,17 @@ class MinMaxScaler:
         self.n_samples_seen_  = 0
 
     def fit(self, X):
+        """
+        Fit on a full dataset, resetting all prior state.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        Returns
+        -------
+        self
+        """
         X = self._validate(X)
         self.min_ = None
         self.max_ = None
@@ -237,9 +244,7 @@ class MinMaxScaler:
         return X
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Imputer
-# ─────────────────────────────────────────────────────────────────────────────
 
 class Imputer:
     """
@@ -312,18 +317,23 @@ class Imputer:
 
         if self.strategy == "mean":
             if self._mean is None:
-                self._mean        = np.zeros(n_features)
-                self._M2          = np.zeros(n_features)
-                self._col_counts  = np.zeros(n_features)
+                self._mean       = np.zeros(n_features)
+                self._M2         = np.zeros(n_features)
+                self._col_counts = np.zeros(n_features)
 
-            for row in X:
-                nan_mask = np.isnan(row)
-                for j in range(n_features):
-                    if nan_mask[j]:
-                        continue
-                    self._col_counts[j] += 1
-                    delta = row[j] - self._mean[j]
-                    self._mean[j] += delta / self._col_counts[j]
+            # Vectorised Welford update per column.
+            # For each column, only non-NaN rows contribute to the count
+            # and mean — NaN positions are masked out before the update.
+            nan_mask = np.isnan(X)          # shape (n_samples, n_features)
+            for row, row_nan in zip(X, nan_mask):
+                valid               = ~row_nan
+                self._col_counts   += valid.astype(float)
+                # avoid divide-by-zero on columns with count still 0
+                safe_counts         = np.where(self._col_counts > 0,
+                                               self._col_counts, 1.0)
+                delta               = np.where(valid,
+                                               row - self._mean, 0.0)
+                self._mean         += delta / safe_counts
 
             self.n_samples_seen_ += len(X)
             self.statistics_ = self._mean.copy()
@@ -380,9 +390,7 @@ class Imputer:
         return X
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # OneHotEncoder
-# ─────────────────────────────────────────────────────────────────────────────
 
 class OneHotEncoder:
     """

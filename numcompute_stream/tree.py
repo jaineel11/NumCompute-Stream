@@ -17,9 +17,7 @@ every stage while keeping the API stateless and simple.
 import numpy as np
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Internal node structure
-# ─────────────────────────────────────────────────────────────────────────────
 
 class _Node:
     """A single node in the decision tree — internal split or leaf."""
@@ -40,9 +38,7 @@ class _Node:
         self.prediction   = None   # majority class at this node
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # DecisionTreeClassifier
-# ─────────────────────────────────────────────────────────────────────────────
 
 class DecisionTreeClassifier:
     """

@@ -41,9 +41,7 @@ from numcompute_stream.io import (
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Helpers
-# ─────────────────────────────────────────────────────────────────────────────
 
 def separator(char="─", width=66):
     print(char * width)
@@ -69,9 +67,7 @@ def stream_fit(model, chunks):
     return model
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Benchmark 1 – Single tree vs. ensembles (streaming)
-# ─────────────────────────────────────────────────────────────────────────────
 
 def bench_models():
     header("BENCHMARK 1: Single Tree vs. Ensemble  (streaming, 5 chunks)")
@@ -119,9 +115,7 @@ def bench_models():
     return results
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Benchmark 2 – Vectorised vs. loop-based Welford StandardScaler
-# ─────────────────────────────────────────────────────────────────────────────
 
 def bench_preprocessing():
     header("BENCHMARK 2: Vectorised vs. Loop StandardScaler  (N=5000, d=10)")
@@ -174,9 +168,7 @@ def bench_preprocessing():
     return t_vec, t_loop
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Benchmark 3 – Chunk size sensitivity
-# ─────────────────────────────────────────────────────────────────────────────
 
 def bench_chunk_sizes():
     header("BENCHMARK 3: Chunk Size Sensitivity  (RandomForest, 3 estimators)")
@@ -212,9 +204,7 @@ def bench_chunk_sizes():
     )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Benchmark 4 – Gini vs. Entropy criterion
-# ─────────────────────────────────────────────────────────────────────────────
 
 def bench_criterion():
     header("BENCHMARK 4: Gini vs. Entropy Criterion  (DecisionTree, depth=5)")
@@ -244,9 +234,7 @@ def bench_criterion():
     )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Main
-# ─────────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     print()

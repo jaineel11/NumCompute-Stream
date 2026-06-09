@@ -22,9 +22,7 @@ import numpy as np
 from collections import deque
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Module-level convenience function  (spec: update_stats API)
-# ─────────────────────────────────────────────────────────────────────────────
 
 # A single module-level instance so callers can do:
 #   from numcompute_stream.stats import update_stats
@@ -66,9 +64,7 @@ def reset_stats():
     _global_stats = None
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # StreamingStats
-# ─────────────────────────────────────────────────────────────────────────────
 
 class StreamingStats:
     """
@@ -207,9 +203,7 @@ class StreamingStats:
         return arr
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # StreamingHistogram
-# ─────────────────────────────────────────────────────────────────────────────
 
 class StreamingHistogram:
     """
@@ -320,9 +314,7 @@ class StreamingHistogram:
         return self
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # ExponentialMovingAverage
-# ─────────────────────────────────────────────────────────────────────────────
 
 class ExponentialMovingAverage:
     """

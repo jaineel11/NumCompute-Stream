@@ -64,7 +64,7 @@ on every metric class.
 ## Demo
 
 ```bash
-python demo/stream_demo.py
+python demo/demo.py
 ```
 
 Loads a CSV dataset, streams through 10 chunks, trains three pipelines
